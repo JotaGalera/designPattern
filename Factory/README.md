@@ -1,4 +1,4 @@
-# Factory
+# Factory
 
 ### What is?:
 

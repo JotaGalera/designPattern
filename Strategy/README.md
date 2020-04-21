@@ -54,9 +54,4 @@ class Circle: Geometry{
 }
 
 main()
-
-//OUTPUT
-I´m a triangle 🔺
-I´m a square ◼️
-I´m a circle 🟠
 ~~~~~
