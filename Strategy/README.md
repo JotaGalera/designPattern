@@ -1,6 +1,6 @@
 # Strategy 
 
-### What is?
+### What is?
 
 Strategy design is a design pattern that is used in order to join application logic. 
 In this design we use an interfaz in order to separate classes that they have a common logic.
