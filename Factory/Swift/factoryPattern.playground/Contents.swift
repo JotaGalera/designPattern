@@ -1,60 +1,76 @@
-protocol MapFactory {
-    func make()->Map
+enum Mode {
+    case easy
+    case hard
 }
 
-class MapEasyFactoryImplementation: MapFactory{
-    func make() -> Map {
-        return MapEasy()
+class MapFactoryImplementation{
+    func make(mode: Mode) -> Map {
+        return MainMap(enemies: Enemy(mode: mode), goal: Goal(mode: mode))
     }
 }
 
-class MapHardFactoryImplementation: MapFactory{
-    func make() -> Map {
-        return MapHard()
+protocol Map{
+    func getEnemy()->String
+    func getGoal()->String
+}
+
+class MainMap: Map {
+    var enemy: Enemy
+    var goal: Goal
+    
+    init(enemies: Enemy,goal: Goal){
+        enemy = enemies
+        self.goal = goal
+    }
+    
+    func getEnemy()->String{
+        return enemy.getName()
+    }
+    
+    func getGoal()->String{
+        return goal.getName()
     }
 }
 
-protocol Map {
-    func build()->String
-}
-
-class MapEasy: Map{
-    func build()->String{
-        return "new map easy mode"
+class Enemy{
+    let name: String
+    
+    init(mode: Mode){
+        name = mode == Mode.easy ? "Easy Enemies" : "Hard Enemies"
+    }
+    
+    func getName()->String{
+        return name
     }
 }
 
-class MapHard: Map{
-    func build()->String{
-        return "new map hard mode"
+class Goal{
+    let name: String
+    
+    init(mode: Mode){
+        name = mode == Mode.easy ? "Easy goal" : "Hard goal"
+    }
+    
+    func getName()->String{
+        return name
     }
 }
-
 class main {
-    var mapFactory: MapFactory
-    var map: Map
+    var easyMap = MapFactoryImplementation().make(mode: .easy)
+    var hardMap = MapFactoryImplementation().make(mode: .hard)
     
-    init(){
-        mapFactory = MapEasyFactoryImplementation()
-        map = mapFactory.make()
+    func showEasyMap()->String{
+        return "Easy mode has \(easyMap.getEnemy()) and \(easyMap.getGoal())"
     }
     
-    func chooseFactory(option: Int)->MapFactory{
-        if option == 1 {
-            return MapEasyFactoryImplementation()
-        }
-        return MapHardFactoryImplementation()
-    }
-    
-    func showResult(){
-        mapFactory = chooseFactory(option: 1)
-        map = mapFactory.make()
-        print ("Generating a \(map.build())")
-        
-        mapFactory = chooseFactory(option: 2)
-        map = mapFactory.make()
-        print ("Generating a \(map.build())")
+    func showHardMap()->String{
+        return "Hard mode has \(hardMap.getEnemy()) and \(hardMap.getGoal())"
     }
 }
 
-main().showResult()
+main().showEasyMap()
+main().showHardMap()
+
+//OUTPUT
+//Easy mode has Easy Enemies and Easy goal
+//Hard mode has Hard Enemies and Hard goal
