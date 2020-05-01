@@ -14,7 +14,7 @@ enum Mode {
     case hard
 }
 
-class MapFactoryImplementation{
+class MapFactory{
     func make(mode: Mode) -> Map {
         return MainMap(enemies: Enemy(mode: mode), goal: Goal(mode: mode))
     }
@@ -67,8 +67,8 @@ class Goal{
     }
 }
 class main {
-    var easyMap = MapFactoryImplementation().make(mode: .easy)
-    var hardMap = MapFactoryImplementation().make(mode: .hard)
+    var easyMap = MapFactory().make(mode: .easy)
+    var hardMap = MapFactory().make(mode: .hard)
     
     func showEasyMap()->String{
         return "Easy mode has \(easyMap.getEnemy()) and \(easyMap.getGoal())"
