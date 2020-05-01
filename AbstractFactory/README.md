@@ -11,7 +11,7 @@ enum Mode{
     case hard
 }
 
-protocol ModeEnemyFactory{
+protocol EnemyFactory{
     func makeMinion()->Minion
     func makeBoss()->Boss
 }
@@ -25,7 +25,7 @@ protocol Boss{
     func getName()->String
 }
 
-class EasyEnemyFactory: ModeEnemyFactory{
+class EasyEnemyFactory: EnemyFactory{
     func makeMinion()->Minion{
         return EasyMinion()
     }
@@ -34,7 +34,7 @@ class EasyEnemyFactory: ModeEnemyFactory{
     }
 }
 
-class HardEnemyFactory: ModeEnemyFactory{
+class HardEnemyFactory: EnemyFactory{
     func makeMinion()->Minion{
         return HardMinion()
     }
@@ -92,19 +92,15 @@ class HardBoss: Boss{
 }
 
 class Map {
-    var enemyFactory: ModeEnemyFactory?
-    var minion: Minion?
-    var boss: Boss?
-    
     init(){}
     
     func configureMap(mode: String){
-        enemyFactory = mode == "Easy" ? EasyEnemyFactory() : HardEnemyFactory()
-        minion = enemyFactory?.makeMinion()
-        boss = enemyFactory?.makeBoss()
+        let enemyFactory: EnemyFactory = mode == "Easy" ? EasyEnemyFactory() : HardEnemyFactory()
+        let minion = enemyFactory.makeMinion()
+        let boss = enemyFactory.makeBoss()
         
-        print("This map has \(minion?.getName()) with \(minion?.getHP()) hp.")
-        print("You can find the final \(boss?.getName()) with \(minion?.getHP()) hp")
+        print("This map has \(minion.getName()) with \(minion.getHP()) hp.")
+        print("You can find the final \(boss.getName()) with \(minion.getHP()) hp")
     }
 }
 
