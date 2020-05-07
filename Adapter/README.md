@@ -4,7 +4,7 @@
 
 Adapter pattern is used when you have an interfaz and a class which isn´t fully compatible with the interfaz. In this case, we can use an intermediate class (the adapter) and it will be like a communicator between the interfaz and the class.
 
-### Example:
+### Example:
 
 In our program we have a train driver and he should be able to drive any type train. In this case, we can make a "Train" interfaz and it has two methods: "Accelerate" and "Decelerate". "Steam Locomotive" and "Diesel Locomotive" agree the intefaz. But "Electric Locomotive" need more methods to achieve the interfaz requeriments. For example:
 
