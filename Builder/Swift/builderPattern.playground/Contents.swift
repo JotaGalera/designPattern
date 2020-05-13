@@ -1,35 +1,27 @@
-protocol ToysBuilder {
-    func buildName()
-    func buildAge()
-    func buildMaterial()
-    func buildCategory()
-    func getToy()->Toys
-}
-
-class StarWarsBuilder: ToysBuilder {
-    private var toy: Toys
+class ToysBuilder {
+    private var toy = Toys()
     
-    init(){
-        toy = Toys()
+    func setName(name: String) -> ToysBuilder{
+        toy.setName(name: name)
+        return self
     }
     
-    func buildName(){
-        toy.setName(name: "Star wars")
-    }
-    
-    func buildAge() {
+    func setAge(age: Int) -> ToysBuilder {
         toy.setAge(age: 3)
+        return self
     }
     
-    func buildMaterial() {
-        toy.setMaterial(material: "Paperboard")
+    func setMaterial(material: String) -> ToysBuilder {
+        toy.setMaterial(material: material)
+        return self
     }
     
-    func buildCategory() {
-        toy.setCategory(category: "Puzzle")
+    func setCategory(category: String) -> ToysBuilder {
+        toy.setCategory(category: category)
+        return self
     }
     
-    func getToy()->Toys{
+    func build() -> Toys{
         return toy
     }
 }
@@ -43,20 +35,20 @@ class Toys {
     func setName(name: String){
         self.name = name
     }
-    
+
     func setAge(age: Int){
         self.age = age
     }
-    
+
     func setMaterial(material: String){
         self.material = material
     }
-    
+
     func setCategory(category: String){
         self.category = category
     }
-    
-    func getToy()->String{
+
+    func getFeatures()->String{
         return "Product name: \(name).\\n This product is recommended for \(age) years old.\\n His categoryThis product is made with \(material).\\n Category toy: \(category)"
     }
 }
@@ -66,20 +58,19 @@ class ToyStore {
     private var toy: Toys = Toys()
     
     init(){
-        toyBuilder = StarWarsBuilder()
+        toyBuilder = ToysBuilder()
     }
     
     func makePuzzle(){
-        toyBuilder.buildName()
-        toyBuilder.buildAge()
-        toyBuilder.buildMaterial()
-        toyBuilder.buildCategory()
-        
-        toy = toyBuilder.getToy()
+        toy = toyBuilder.setName(name: "Star Wars Puzzle")
+                        .setAge(age: 5)
+                        .setMaterial(material: "Paperboard")
+                        .setCategory(category: "Kids")
+                        .build()
     }
     
     func showToy(){
-        print( toy.getToy() )
+        print( toy.getFeatures() )
     }
     
 }
