@@ -1,4 +1,4 @@
-# Builder pattern
+# Builder pattern
 
 ### What is?:
 
@@ -90,6 +90,5 @@ toyStore.makePuzzle()
 toyStore.showToy()
 
 //OUTPUT
-Product name: Optional("Star wars").\n This product is recommended for Optional(3) years old.\n His categoryThis product is made with Optional("Paperboard").\n Category toy: Optional("Puzzle")
-
+Product name: Optional("Star Wars Puzzle").\n This product is recommended for Optional(3) years old.\n His categoryThis product is made with Optional("Paperboard").\n Category toy: Optional("Kids")
 ~~~~
