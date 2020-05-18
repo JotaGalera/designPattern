@@ -10,63 +10,58 @@ A toy store have a product: "Star wars puzzle". In order to make this product wh
 
 ~~~~
 class ToysBuilder {
-    private var toy = Toys()
-    
-    func setName(name: String) -> ToysBuilder{
-        toy.setName(name: name)
-        return self
-    }
-    
-    func setAge(age: Int) -> ToysBuilder {
-        toy.setAge(age: 3)
-        return self
-    }
-    
-    func setMaterial(material: String) -> ToysBuilder {
-        toy.setMaterial(material: material)
-        return self
-    }
-    
-    func setCategory(category: String) -> ToysBuilder {
-        toy.setCategory(category: category)
-        return self
-    }
-    
-    func build() -> Toys{
-        return toy
-    }
-}
-
-class Toys {
     private var name: String?
     private var age: Int?
     private var material: String?
     private var category: String?
     
-    func setName(name: String){
+    func setName(name: String) -> ToysBuilder{
         self.name = name
+        return self
     }
-
-    func setAge(age: Int){
+    
+    func setAge(age: Int) -> ToysBuilder {
         self.age = age
+        return self
     }
-
-    func setMaterial(material: String){
+    
+    func setMaterial(material: String) -> ToysBuilder {
         self.material = material
+        return self
     }
-
-    func setCategory(category: String){
+    
+    func setCategory(category: String) -> ToysBuilder {
         self.category = category
+        return self
     }
+    
+    func build() -> Toys{
+        return Toys(builder: self)
+    }
+    
+    class Toys {
+        var builder = ToysBuilder()
+        private var name: String?
+        private var age: Int?
+        private var material: String?
+        private var category: String?
+        
+        init(builder: ToysBuilder){
+            self.name = builder.name
+            self.age = builder.age
+            self.material = builder.material
+            self.category = builder.category
+        }
 
-    func getFeatures()->String{
-        return "Product name: \(name).\\n This product is recommended for \(age) years old.\\n His categoryThis product is made with \(material).\\n Category toy: \(category)"
+        func getFeatures()->String{
+            return "Product name: \(name).\\n This product is recommended for \(age) years old.\\n His categoryThis product is made with \(material).\\n Category toy: \(category)"
+        }
     }
 }
 
 class ToyStore {
     private var toyBuilder: ToysBuilder
-    private var toy: Toys = Toys()
+    private var toy: ToysBuilder.Toys?
     
     init(){
         toyBuilder = ToysBuilder()
@@ -81,13 +76,13 @@ class ToyStore {
     }
     
     func showToy(){
-        print( toy.getFeatures() )
+        print( toy?.getFeatures() )
     }
-    
 }
 let toyStore = ToyStore()
 toyStore.makePuzzle()
 toyStore.showToy()
+
 
 //OUTPUT
 Product name: Optional("Star Wars Puzzle").\n This product is recommended for Optional(3) years old.\n His categoryThis product is made with Optional("Paperboard").\n Category toy: Optional("Kids")
