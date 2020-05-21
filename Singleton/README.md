@@ -1,6 +1,6 @@
 # Singleton pattern
 
-### What is?:
+### What is?:
 
 Singleton design pattern is used when you don´t want to let more of one instance of one class. This pattern is not recommended as you are something like a global instance. For this reason, it usual use another way in order to solve the problem. But if you are cautious this is an easy pattern to make.
 
