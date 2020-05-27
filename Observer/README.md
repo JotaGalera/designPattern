@@ -1,6 +1,6 @@
 # Observer pattern
 
-### What is? :
+### What is? :
 
 Observer pattern is very useful when you need to notificate some entity. 
 For example, in order to manage the notifications in an app you can implement: 
