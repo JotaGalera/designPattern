@@ -1,6 +1,6 @@
 # Observer pattern
 
-### What is?:
+### What is? :
 
 Observer pattern is very useful when you need to notificate some entity. 
 For example, in order to manage the notifications in an app you can implement: 
@@ -8,7 +8,7 @@ For example, in order to manage the notifications in an app you can implement:
     · ___Observer___: an interface with "Update" method. This method will be implemented by observers.
     · ___ObserversImplementation___: the different observers will be notified with the changes and they will act in function of the change notified. 
 
-### Example: 
+### Example :
 
 ~~~~
 import UIKit
