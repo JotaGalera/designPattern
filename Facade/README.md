@@ -1,6 +1,6 @@
 # Facade pattern
 
-### What is?:
+### What is?:
 
 Use this pattern to hide logic of 2 or more subsystem of your app. Then you provide a simple method to clients in order to avoid 
 exposing your logic
