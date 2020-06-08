@@ -29,7 +29,6 @@ class ToysBuilder {
     }
     
     class Toys {
-        var builder = ToysBuilder()
         private var name: String?
         private var age: Int?
         private var material: String?
