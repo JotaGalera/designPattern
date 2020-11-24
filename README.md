@@ -1,3 +1,3 @@
-# Patter Design
+# Design Patter 
 
-A quiet place where I´ll upload different pattern designs
+A quiet place where I´ll upload different design patterns
